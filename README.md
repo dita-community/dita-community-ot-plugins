@@ -60,5 +60,14 @@ If you are interested in being a member of the DITA Community Github project tea
 please contact one of the team members or create an issue indicating that you'd
 like to contribute. We can always use help maintaining the repository.
   
+## Other Sources of Plugins
+
+* The DITA Open Toolkit is available at http://dita-ot.github.io 
+* DITA for Publishers provides a number of plugins, including EPUB, HTML5, and 
+  enhanced HTML output. It also provides a general map-driven framework that
+  can be used by other plugins. http://dita4publishers.sourceforge.net
+* The DITA Users Yahoo Group (https://groups.yahoo.com/neo/groups/dita-users/info) 
+  has a files area that includes community-contributed plugins.  
+
    
    
