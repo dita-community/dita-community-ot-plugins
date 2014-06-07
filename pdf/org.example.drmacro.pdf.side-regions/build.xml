@@ -1,0 +1,3 @@
+<project>
+    <import file="build_side-regions.pdf_template.xml"/>
+</project>

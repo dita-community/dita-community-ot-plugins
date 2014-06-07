@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin id="org.example.pdf.side-regions">
+    <feature extension="dita.conductor.transtype.check" value="sideregions.pdf"/>
+    <feature extension="dita.transtype.print" value="sideregions.pdf"/>
+    <feature extension="dita.conductor.target.relative" file="build.xml"/>
+  
+    <template file="build_side-regions.pdf_template.xml"/>
+
+</plugin>
