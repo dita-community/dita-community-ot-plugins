@@ -25,7 +25,7 @@ To contribute a plugin please do the following:
    may use "org.dita-community." as the first part of the
    name.
 
-2. Include a README.TXT or similar documentation in the top-level
+2. Include a README.TXT or README.md or similar documentation in the top-level
    directory of your plugin that provides at least the following
    information:
    
