@@ -1,0 +1,139 @@
+<project name="dita-community-ot-plugins" basedir="."
+	>
+	
+	<!-- NOTE: This script requires that the DITA Open Toolkit
+	           libraries be included in the Java classpath
+	           used to run Ant itself. E.g., run startcmd.sh 
+	           from the DITA-OT root directory.
+	  -->
+
+	<!-- NOTE: Update version.properties as needed to reflect new 
+	           versions of project components.
+	  -->
+  <property file="version.properties"/>
+  <property file="build.properties"/>
+  <property file="${user.home}/.build.properties"/>
+  <property file="${user.home}/build.properties"/>
+	
+  <property name="build" location="${basedir}/build"/>
+  <property name="dist" location="${basedir}/dist"/>
+  <property name="toolkit.plugin.src" location="${basedir}"/>
+  <property name="temp" location="${basedir}/temp"/>
+	<property name="plugin.dist" location="${dist}/plugins"/>
+  <property name="package.dist" location="${dist}/dita-community"/>
+	<property name="package.zip.base" value="dita-community"/>
+  <property name="dita-ot-dir" location="c:\DITA-OT1.8"/>
+  <property name="plugin.src" location="${basedir}"/>
+  <property name="plugin-deploy_target" location="${dita-ot-dir}/plugins"/>
+  <property name="doctypes.plugin-dist" location="${plugin.dist}/dita-community-ot-plugins"/>
+	<property name="target.home" location="${basedir}/target"/>
+	
+	<import file="${dita-ot-dir}${file.separator}integrator.xml" optional="yes"/>
+	
+
+	<path id="dita-classpath"
+		>
+		<fileset dir="${dita-ot-dir}">
+			<include name="lib"/>
+		</fileset>
+		<fileset dir="${dita-ot-dir}/lib">
+		  <include name="**/*.jar"/>
+		</fileset>
+    <fileset dir="${dita-ot-dir}/lib/org.dita.dost.platform">
+      <include name="*.properties"/>
+    </fileset>
+    <fileset dir="${dita-ot-dir}/lib/saxon">
+      <include name="**/*.jar"/>
+    </fileset>
+	</path>
+	
+  <path id="classpath.base">
+    <pathelement path="${classes.home}"/>
+    <fileset dir="${lib}">
+        <include name="*.jar"/>
+    </fileset>
+  </path>
+
+	<target name="init">
+		<buildnumber/>
+    <tstamp/>
+  </target>
+
+  <tstamp>
+		<format property="package.date" pattern="yyyy-MM-dd"/>
+	</tstamp>
+  
+  <tstamp>
+  	<format property="build-date-time"
+  	          pattern="yyyy-MM-dd HH:mm:SSS z"/>
+	</tstamp>
+
+
+  <target name="clean">
+  </target>
+	
+	<target name="add-version-info-to-files">
+	  <!-- TBD -->
+	</target>
+	
+	<target name="dist-toolkit-plugins" description="Packages the DITA Open Toolkit plugins for deployment to a working Toolkit instance"
+		 depends="
+		dist-init
+		"
+		>
+    <delete includeEmptyDirs="true" failonerror="false">
+      <fileset dir="${plugin.dist}"  includes="*/**"/>
+    </delete>
+		<copy todir="${plugin.dist}">
+			<fileset dir="${plugin.src}">
+				<exclude name="*.zip"/> 
+			</fileset>
+		</copy>
+		
+  </target>
+	
+	<target name="deploy-toolkit-plugins" depends="dist-toolkit-plugins"
+	  description="Deploy plugins to local DITA Open Toolkit">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${plugin-deploy_target}">
+				<include name="org.dita-community.adjust-copy-to/**/*"/>
+				<include name="org.dita-community.common.xslt/**/*"/>
+				<include name="org.dita-community.doctypes/**/*"/>
+				<include name="org.dita-community.media-d.doctypes/**/*"/>
+				<include name="org.dita-community.media-d.html/**/*"/>
+				<include name="org.dita-community.preprocess-extensions/**/*"/>
+				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
+				<include name="org.dita-community.ruby-d.fo/**/*"/>
+				<include name="org.dita-community.ruby-d.html/**/*"/>
+				<include name="org.dita-community.variables-d/**/*"/>
+			</fileset>
+		</delete>
+		<mkdir dir="${plugin-deploy_target}"/>
+		<copy todir="${plugin-deploy_target}">
+			<fileset dir="${plugin.dist}">
+				<include name="org.dita-community.adjust-copy-to/**/*"/>
+				<include name="org.dita-community.common.xslt/**/*"/>
+				<include name="org.dita-community.doctypes/**/*"/>
+				<include name="org.dita-community.media-d.doctypes/**/*"/>
+				<include name="org.dita-community.media-d.html/**/*"/>
+				<include name="org.dita-community.preprocess-extensions/**/*"/>
+				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
+				<include name="org.dita-community.ruby-d.fo/**/*"/>
+				<include name="org.dita-community.ruby-d.html/**/*"/>
+				<include name="org.dita-community.variables-d/**/*"/>
+			</fileset>
+		</copy>
+    <!-- Integrate the deployed plugins: -->
+    <antcall target="integrate"/>
+
+	</target>
+	
+	<target name="dist-init" depends="init">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${dist}" includes="*/**"/>
+  	</delete>
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${package.dist}"/>
+  </target>
+
+</project>
