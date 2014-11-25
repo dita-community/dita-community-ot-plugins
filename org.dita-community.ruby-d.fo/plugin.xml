@@ -1,0 +1,16 @@
+<!-- 
+  Plugin descriptor for the enumeration domain FO rendering plugin.
+  
+  Copyright (c) 2010 DITA For Publishers
+  Copyright (c) 2014 DITA Community
+  
+    
+  This plug-in extends the base DITA-to-FO process to provide appropriate
+  rendering for Ruby domain elements.
+  
+  -->
+<plugin id="org.dita-community.ruby-d.fo">
+  <require plugin="org.dita-community.ruby-d.doctypes"/> 
+  <feature extension="dita.xsl.xslfo"
+      value="xsl/rubyDomain2fo.xsl" type="file"/>
+</plugin>

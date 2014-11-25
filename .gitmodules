@@ -1,0 +1,30 @@
+[submodule "org.dita-community.adjust-copy-to"]
+	path = org.dita-community.adjust-copy-to
+	url = https://github.com/dita-community/org.dita-community.adjust-copy-to.git
+[submodule "org.dita-community.common.xslt"]
+	path = org.dita-community.common.xslt
+	url = https://github.com/dita-community/org.dita-community.common.xslt.git
+[submodule "org.dita-community.doctypes"]
+	path = org.dita-community.doctypes
+	url = https://github.com/dita-community/org.dita-community.doctypes.git
+[submodule "org.dita-community.media-d.doctypes"]
+	path = org.dita-community.media-d.doctypes
+	url = https://github.com/dita-community/org.dita-community.media-d.doctypes.git
+[submodule "org.dita-community.media-d.html"]
+	path = org.dita-community.media-d.html
+	url = https://github.com/dita-community/org.dita-community.media-d.html.git
+[submodule "org.dita-community.preprocess-extensions"]
+	path = org.dita-community.preprocess-extensions
+	url = https://github.com/dita-community/org.dita-community.preprocess-extensions.git
+[submodule "org.dita-community.ruby-d.doctypes"]
+	path = org.dita-community.ruby-d.doctypes
+	url = https://github.com/dita-community/org.dita-community.ruby-d.doctypes.git
+[submodule "org.dita-community.ruby-d.html"]
+	path = org.dita-community.ruby-d.html
+	url = https://github.com/dita-community/org.dita-community.ruby-d.html.git
+[submodule "org.dita-community.variables-d"]
+	path = org.dita-community.variables-d
+	url = https://github.com/dita-community/org.dita-community.variables-d.git
+[submodule "org.dita-community.ruby-d.fo"]
+	path = org.dita-community.ruby-d.fo
+	url = https://github.com/dita-community/org.dita-community.ruby-d.fo.git
