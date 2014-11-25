@@ -1,7 +1,5 @@
-dita-community-ot-plugins
-===============
-
 DITA Community Open Toolkit Plugins
+===============
 
 This repository serves to organize the various DITA Community plugins
 into a single project, where each plugin is a separate git submodule. 
