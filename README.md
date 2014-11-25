@@ -1,7 +1,7 @@
-dita-ot-plugins
+dita-community-ot-plugins
 ===============
 
-DITA Open Toolkit Community Plugins
+DITA Community Open Toolkit Plugins
 
 This repository serves to organize the various DITA Community plugins
 into a single project, where each plugin is a separate git submodule. 
@@ -16,8 +16,8 @@ in the dita-ot-plugins directory, e.g.:
 
 ~~~~
 cd ~/workspace
-cd clone https://github.com/dita-community/dita-ot-plugins.git
-cd dita-ot-plugins
+cd clone https://github.com/dita-community/dita-community-ot-plugins.git
+cd dita-community-ot-plugins
 git submodule init
 git submodule update
 git submodule foreach git checkout master
@@ -31,11 +31,20 @@ If any plugin is updated, you can update your local repo using the command:
 git submodule foreach git pull
 ~~~~
 
+You can use the script "submoduleAll.sh" to add the plugin submodules to any git repo. For example, if you make your DITA Open Toolkit directory into a git repo then you can add these plugins as submodules under the plugins/ directory.
+
+The Ant build.xml script also provides the target "deploy-toolkit-plugins" which will copy the plugins to the configured Open Toolkit and integrate them for you. You need to set the Ant property "dita-ot-dir" to the location of your Open Toolkit. You can do this on the Ant command line with the "-Ddita-ot-dir={path to your OT}" parameter or create a file named "build.properties" or ".build.properties" in either the project directory or in your home directory and set the property there, e.g.:
+
+~~~~
+dita-ot-dir=/Users/ekimber/DITA-OT
+~~~~
+
+## Contributing to the DITA Community organization
+
 If you would like to contribute a plugin to the DITA Community organization, contact one of the DITA Community organization owners and we'll set up a repository for you and add the plugin to this project as a submodule.
 
 Contact: ekimber@dita-community.org
 
-## Contributing to the DITA Community organization
 
 If you are interested in being a member of the DITA Community Github project team,
 please contact one of the team members or create an issue indicating that you'd
