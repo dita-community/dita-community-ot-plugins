@@ -11,6 +11,10 @@
   -->
 <plugin id="org.dita-community.ruby-d.fo">
   <require plugin="org.dita-community.ruby-d.doctypes"/> 
+  
+  <feature extension="package.support.name" value="Eliot Kimber"/>
+  <feature extension="package.support.email" value="ekimber@contrext.com"/>  
+  
   <feature extension="dita.xsl.xslfo"
       value="xsl/rubyDomain2fo.xsl" type="file"/>
 </plugin>
