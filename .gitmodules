@@ -31,3 +31,6 @@
 [submodule "org.dita-community.ruby-d.fo"]
 	path = org.dita-community.ruby-d.fo
 	url = https://github.com/dita-community/org.dita-community.ruby-d.fo.git
+[submodule "org.dita-community.d3visualizer"]
+	path = org.dita-community.d3visualizer
+	url = git@github.com:dita-community/org.dita-community.d3visualizer.git
