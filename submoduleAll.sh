@@ -28,10 +28,13 @@ CLONEPATH=$1
 
 # clone
 git submodule add -f https://github.com/dita-community/org.dita-community.adjust-copy-to.git ${CLONEPATH}/org.dita-community.adjust-copy-to
+git submodule add -f https://github.com/dita-community/org.dita-community.common.mapdriven.git ${CLONEPATH}/org.dita-community.common.mapdriven
 git submodule add -f https://github.com/dita-community/org.dita-community.common.xslt.git ${CLONEPATH}/org.dita-community.common.xslt
 git submodule add -f https://github.com/dita-community/org.dita-community.doctypes.git ${CLONEPATH}/org.dita-community.doctypes
 git submodule add -f https://github.com/dita-community/org.dita-community.media-d.doctypes.git ${CLONEPATH}/org.dita-community.media-d.doctypes
 git submodule add -f https://github.com/dita-community/org.dita-community.media-d.html.git ${CLONEPATH}/org.dita-community.media-d.html
+git submodule add -f https://github.com/dita-community/org.dita-community.pdf-page-break.git ${CLONEPATH}/org.dita-community.pdf-page-break
+git submodule add -f https://github.com/dita-community/org.dita-community.pdf.flagging.git ${CLONEPATH}/org.dita-community.pdf.flagging
 git submodule add -f https://github.com/dita-community/org.dita-community.preprocess-extensions.git ${CLONEPATH}/org.dita-community.preprocess-extensions
 git submodule add -f https://github.com/dita-community/org.dita-community.ruby-d.doctypes.git ${CLONEPATH}/org.dita-community.ruby-d.doctypes
 git submodule add -f https://github.com/dita-community/org.dita-community.ruby-d.fo.git ${CLONEPATH}/org.dita-community.ruby-d.fo
