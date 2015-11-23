@@ -13,6 +13,9 @@
 [submodule "org.dita-community.media-d.html"]
 	path = org.dita-community.media-d.html
 	url = https://github.com/dita-community/org.dita-community.media-d.html.git
+[submodule "org.dita-community.pdf-page-break"]
+	path = org.dita-community.pdf-page-break
+	url = https://github.com/dita-community/org.dita-community.pdf-page-break.git
 [submodule "org.dita-community.preprocess-extensions"]
 	path = org.dita-community.preprocess-extensions
 	url = https://github.com/dita-community/org.dita-community.preprocess-extensions.git
