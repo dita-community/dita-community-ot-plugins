@@ -100,9 +100,11 @@
 				<include name="org.dita-community.adjust-copy-to/**/*"/>
 				<include name="org.dita-community.common.xslt/**/*"/>
 				<include name="org.dita-community.doctypes/**/*"/>
-				<include name="org.dita-community.media-d.doctypes/**/*"/>
+			  <include name="org.dita-community.flagging.status/**/*"/>
+			  <include name="org.dita-community.media-d.doctypes/**/*"/>
 				<include name="org.dita-community.media-d.html/**/*"/>
-				<include name="org.dita-community.preprocess-extensions/**/*"/>
+			  <include name="org.dita-community.pdf.flagging/**/*"/>
+			  <include name="org.dita-community.preprocess-extensions/**/*"/>
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>
@@ -115,9 +117,11 @@
 				<include name="org.dita-community.adjust-copy-to/**/*"/>
 				<include name="org.dita-community.common.xslt/**/*"/>
 				<include name="org.dita-community.doctypes/**/*"/>
-				<include name="org.dita-community.media-d.doctypes/**/*"/>
+			  <include name="org.dita-community.flagging.status/**/*"/>
+			  <include name="org.dita-community.media-d.doctypes/**/*"/>
 				<include name="org.dita-community.media-d.html/**/*"/>
-				<include name="org.dita-community.preprocess-extensions/**/*"/>
+			  <include name="org.dita-community.pdf.flagging/**/*"/>
+			  <include name="org.dita-community.preprocess-extensions/**/*"/>
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>

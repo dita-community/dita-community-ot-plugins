@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:dita="http://dita-ot.sourceforge.net" name="doxygendita2xhtml">
+  
+  <property name="doxygen.resources" value="${dita.plugin.org.dita-community.doxygen.html.dir}/resources"/>
+
+  <property name="args.copycss" value="yes"/>
+  <property name="args.css" value="doxygen.css"/>
+  <property name="args.cssroot" value="${doxygen.resources}/css"/>
+
+  <property name="clean.output" value="yes"/>
+  <property name="clean.temp" value="yes"/>
+  
+  <target name="dita2doxygen-html"
+    unless="noMap"    
+    >
+    <!-- 
+       <param name="input.map.url" expression="${html5.map.url}" if="html5.map.url"/> 
+     -->
+    <!-- NOTE: args.input is the original input file, not the resolved
+         map in the temp location.
+      -->
+    <echo>user.input.file="${user.input.file}"</echo>
+    <property name="input.map.file" location="${args.input}"/>
+    
+    <makeurl property="input.map.url"
+      file="${input.map.file}"
+    />
+    <antcall target="dita2xhtml">
+      <param name="args.hide.parent.link" value="true"/>
+      <param name="include.rellinks" value="false"/>
+      <param name="args.xsl" value="${dita.plugin.org.dita-community.doxygen.html.dir}/xsl/doxygen2html.xsl"/>      
+    </antcall>
+  </target>
+  
+
+  <!-- Used during preprocessing to copy Doxygen-specific files -->
+  <target name="doxygen-copy" >
+    <echo message="--------- Doxygen build ----------------" />
+    <echo message="doxygen.resources : '${doxygen.resources}" />
+    <echo message="args.cssroot : '${args.cssroot}" />
+    
+    <mkdir dir="${output.dir}/resources"/>    
+    <copy todir="${output.dir}/resources">
+      <fileset dir="${doxygen.resources}"/>
+    </copy>
+  </target>
+ 
+</project>

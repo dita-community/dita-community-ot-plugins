@@ -1,0 +1,69 @@
+/* Emulate the doxygen HTML style for DITA-based HTML 
+ 
+   Depends @class values produced by the Oculus 
+   doxygen-style HTML overrides to the base HTML
+   transform
+ */
+ 
+ table.memberdecls {
+    width: 1000px;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+ }
+ 
+ table.memberdecls  tr {
+	border-spacing: 0px;
+	padding: 0px;
+ }
+ 
+ .memitem {
+	padding: 0;
+	margin-bottom: 10px;
+	margin-right: 5px;
+        -webkit-transition: box-shadow 0.5s linear;
+        -moz-transition: box-shadow 0.5s linear;
+        -ms-transition: box-shadow 0.5s linear;
+        -o-transition: box-shadow 0.5s linear;
+        transition: box-shadow 0.5s linear;
+        display: table !important;
+        width: 100%;
+}
+
+ 
+ .memberdecls td, .fieldtable tr {
+	-webkit-transition-property: background-color, box-shadow;
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-property: background-color, box-shadow;
+	-moz-transition-duration: 0.5s;
+	-ms-transition-property: background-color, box-shadow;
+	-ms-transition-duration: 0.5s;
+	-o-transition-property: background-color, box-shadow;
+	-o-transition-duration: 0.5s;
+	transition-property: background-color, box-shadow;
+	transition-duration: 0.5s;
+}
+
+ table.memberdecls  tr  td {
+   vertical-align: top;
+   background-color: rgb(249, 250, 252);
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    padding-bottom: 0px;
+    padding-left: 8px;
+    padding-right: 0px;
+    padding-top: 1px;
+}
+ 
+ table.memberdecls  tr  td.memItemLeft {
+    width: 179px;
+    text-align: right;
+
+ }
+
+ table.memberdecls  tr  td.memItemRight {
+   padding-left: 8px;
+ }
+ 

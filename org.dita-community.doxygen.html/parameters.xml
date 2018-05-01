@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parameters>
+  <param name="input.map.url" expression="${input.map.url}" if="input.map.url"/>
+</parameters>
+
