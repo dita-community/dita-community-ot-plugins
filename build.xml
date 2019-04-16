@@ -148,7 +148,16 @@
 		<property name="plugin.name" value="not-set"/>
 
 		<property name="plugin.dir" value="${basedir}/${plugin.name}"/>
+		<fail message="Plugin directory must contain a version.properties file.">
+			<condition>
+				<not>
+					<available file="${plugin.dir}/version.properties" />
+				</not>
+			</condition>
+		</fail>
+		
 		<property file="${plugin.dir}/version.properties"/>
+		
 		<property name="plugin.dist.dir" value="${plugin.dist}/${plugin.name}"/>
 		
 		<copy todir="${plugin.dist.dir}">
@@ -240,9 +249,9 @@
 			<arg line="checkout -b ${branch.name}"/>
 		</exec>
 		
-		<!-- Copy registry descriptor and set the version and checksum -->
-		
-		<copy todir="${registry.target}">
+		<!-- Copy registry descriptor and set the version and checksum: -->
+	
+		<copy todir="${registry.target}" overwrite="true">
 			<fileset dir="${registry.src}">
 				<include name="${plugin.json}"/>
 			</fileset>
@@ -327,6 +336,8 @@
 		
 		<!-- Step 2: Upload the release package Zip file -->
 		
+		<!-- FIXME: Not getting the GitHub REST API to work. -->
+		
 <!--		<property name="targetURL" value="https://api.github.com"/>
 		<echo>File to post: "${filetopost}"</echo>
 		<echo>Uploading to "${targetURL}"...</echo>
@@ -350,6 +361,14 @@
 		>
 		<antcall target="package.single.plugin">
 			<param name="plugin.name" value="org.dita-community.common.xslt"/>
+		</antcall>
+	</target>
+	
+	<target name="package.glossary.preprocess"
+		description="Package the org.dita-community.glossary.preprocess plugin for release"
+		>
+		<antcall target="package.single.plugin">
+			<param name="plugin.name" value="org.dita-community.glossary.preprocess"/>
 		</antcall>
 	</target>
 	

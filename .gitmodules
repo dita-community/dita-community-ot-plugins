@@ -40,3 +40,6 @@
 [submodule "org.dita-community.common.mapdriven"]
 	path = org.dita-community.common.mapdriven
 	url = git@github.com:dita-community/org.dita-community.common.mapdriven.git
+[submodule "org.dita-community.glossary.preprocess"]
+	path = org.dita-community.glossary.preprocess
+	url = git@github.com:dita-community/org.dita-community.glossary.preprocess.git
