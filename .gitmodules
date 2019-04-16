@@ -1,6 +1,3 @@
-[submodule "org.dita-community.adjust-copy-to"]
-	path = org.dita-community.adjust-copy-to
-	url = https://github.com/dita-community/org.dita-community.adjust-copy-to.git
 [submodule "org.dita-community.common.xslt"]
 	path = org.dita-community.common.xslt
 	url = https://github.com/dita-community/org.dita-community.common.xslt.git
@@ -16,9 +13,6 @@
 [submodule "org.dita-community.pdf-page-break"]
 	path = org.dita-community.pdf-page-break
 	url = https://github.com/dita-community/org.dita-community.pdf-page-break.git
-[submodule "org.dita-community.preprocess-extensions"]
-	path = org.dita-community.preprocess-extensions
-	url = https://github.com/dita-community/org.dita-community.preprocess-extensions.git
 [submodule "org.dita-community.ruby-d.doctypes"]
 	path = org.dita-community.ruby-d.doctypes
 	url = https://github.com/dita-community/org.dita-community.ruby-d.doctypes.git
