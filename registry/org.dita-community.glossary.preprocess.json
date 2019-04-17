@@ -10,9 +10,17 @@
       {
         "name": "org.dita.base",
         "req": ">=3.3"
+      },
+      {
+        "name": "org.dita-community.common.xslt",
+        "req": "1.1.0"
+      },
+      {
+        "name": "org.dita-community.i18n",
+        "req": "2.0.1"
       }
     ],
-    "url": "https://github.com/dita-community/org.dita-community.glossary.preprocess/archive/org.dita-community.glossary.preprocess.^version^.zip",
+    "url": "https://github.com/dita-community/org.dita-community.glossary.preprocess/releases/download/v^version^/org.dita-community.glossary.preprocess.^version^.zip",
     "cksum": "^checksum^"
   }
 ]
