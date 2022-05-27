@@ -1,0 +1,18 @@
+[
+  {
+    "name": "org.dita-community.split-page-sequences",
+    "description": "DITA Community Split Page Sequences",
+    "homepage": "https://github.com/dita-community/org.dita-community.split-page-sequences",
+    "keywords": ["XSLT", "PDF"],
+    "vers": "^version^",
+    "license": "Apache-2.0",
+    "deps": [
+      {
+        "name": "org.dita.pdf2",
+        "req": ">=3.6.1"
+      }
+    ],
+    "url": "https://github.com/dita-community/org.dita-community.split-page-sequences/releases/download/v^version^/org.dita-community.split-page-sequences.^version^.zip",
+    "cksum": "^checksum^"
+  }
+]
