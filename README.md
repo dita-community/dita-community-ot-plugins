@@ -1,5 +1,16 @@
 # DITA Community Open Toolkit Plugins
 
+**NOTE:** 27 May 2022: Renamed branch "master" to "main", set "develop" as default branch.
+
+To update your local clone, follow these instructions:
+
+```
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
 This repository serves to organize the various DITA Community plugins
 into a single project, where each plugin is a separate git submodule. 
 This makes it easier to work with the plugin projects as a unit.
