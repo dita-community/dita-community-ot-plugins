@@ -107,6 +107,7 @@
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>
+			  <include name="org.dita-community.split-page-sequences/**/*"/>
 				<include name="org.dita-community.variables-d/**/*"/>
 			</fileset>
 		</delete>
@@ -122,7 +123,8 @@
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>
-				<include name="org.dita-community.variables-d/**/*"/>
+			  <include name="org.dita-community.split-page-sequences/**/*"/>
+			  <include name="org.dita-community.variables-d/**/*"/>
 			</fileset>
 		</copy>
     
@@ -251,6 +253,7 @@
 		
 		<!-- Copy registry descriptor and set the version and checksum: -->
 	
+		<echo>Copying ${registry.src}/${plugin.json} to ${registry.target}</echo>
 		<copy todir="${registry.target}" overwrite="true">
 			<fileset dir="${registry.src}">
 				<include name="${plugin.json}"/>
@@ -372,7 +375,15 @@
 		</antcall>
 	</target>
 	
-	<target name="release.common.xslt"
+  <target name="package.split.page-sequences"
+    description="Package the org.dita-community.split-page-sequences plugin for release"
+    >
+    <antcall target="package.single.plugin">
+      <param name="plugin.name" value="org.dita-community.split-page-sequences"/>
+    </antcall>
+  </target>
+  
+  <target name="release.common.xslt"
 		description="Release the org.dita-community.common.xslt plugin to GitHub and plugin repository"
 		>
 		<antcall target="release.single.plugin">
