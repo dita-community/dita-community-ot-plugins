@@ -2,7 +2,7 @@
 
 **NOTE:** 27 May 2022: Renamed branch "master" to "main", set "develop" as default branch.
 
-To update your local clone, follow these instructions:
+To update your local clone, run these git commands:
 
 ```
 git branch -m master main
