@@ -1,15 +1,11 @@
 <project name="dita-community-ot-plugins" basedir="."
 	>
 	
-	<!-- NOTE: This script requires that the DITA Open Toolkit
-	           libraries be included in the Java classpath
-	           used to run Ant itself. E.g., run startcmd.sh 
-	           from the DITA-OT root directory.
-	  -->
-
 	<!-- NOTE: Update version.properties as needed to reflect new 
 	           versions of project components.
 	  -->
+	<property environment="env"/>
+	
   <property file="version.properties"/>
   <property file=".build.properties"/>
   <property file="build.properties"/>
@@ -28,10 +24,9 @@
   <property name="plugin-deploy_target" location="${dita-ot-dir}/plugins"/>
   <property name="doctypes.plugin-dist" location="${plugin.dist}/dita-community-ot-plugins"/>
 	<property name="target.home" location="${basedir}/target"/>
+	<property name="registry.src" location="${basedir}/registry"/>
+	<property name="registry.target" location="${user.home}/workspace-ditaot/registry"/>
 	
-	<import file="${dita-ot-dir}${file.separator}integrator.xml" optional="yes"/>
-	
-
 	<path id="dita-classpath"
 		>
 		<fileset dir="${dita-ot-dir}">
@@ -69,22 +64,28 @@
   	          pattern="yyyy-MM-dd HH:mm:SSS z"/>
 	</tstamp>
 
-
-  <target name="clean">
+  <target name="clean" depends="init">
+  	<delete failonerror="false" includeemptydirs="true">
+  		<fileset dir="${dist}" includes="*/**"/>
+  	</delete>
+  	<delete includeEmptyDirs="true" failonerror="false">
+  		<fileset dir="${plugin.dist}"  includes="*/**"/>
+  	</delete>
+  	<delete includeEmptyDirs="true" failonerror="false">
+  		<fileset dir="${package.dist}"  includes="*/**"/>
+  	</delete>
   </target>
 	
 	<target name="add-version-info-to-files">
 	  <!-- TBD -->
 	</target>
 	
-	<target name="dist-toolkit-plugins" description="Packages the DITA Open Toolkit plugins for deployment to a working Toolkit instance"
+	<target name="dist-toolkit-plugins" 
+		description="Packages the DITA Open Toolkit plugins for deployment to a working Toolkit instance"
 		 depends="
 		dist-init
 		"
 		>
-    <delete includeEmptyDirs="true" failonerror="false">
-      <fileset dir="${plugin.dist}"  includes="*/**"/>
-    </delete>
 		<copy todir="${plugin.dist}">
 			<fileset dir="${plugin.src}">
 				<exclude name="*.zip"/> 
@@ -97,48 +98,298 @@
 	  description="Deploy plugins to local DITA Open Toolkit">
 		<delete failonerror="true" includeemptydirs="true">
 			<fileset dir="${plugin-deploy_target}">
-				<include name="org.dita-community.adjust-copy-to/**/*"/>
+<!--				<include name="org.dita-community.adjust-copy-to/**/*"/>-->
 				<include name="org.dita-community.common.xslt/**/*"/>
 				<include name="org.dita-community.doctypes/**/*"/>
-			  <include name="org.dita-community.flagging.status/**/*"/>
-			  <include name="org.dita-community.media-d.doctypes/**/*"/>
-				<include name="org.dita-community.media-d.html/**/*"/>
-			  <include name="org.dita-community.pdf.flagging/**/*"/>
-			  <include name="org.dita-community.preprocess-extensions/**/*"/>
+<!--				<include name="org.dita-community.media-d.doctypes/**/*"/>-->
+<!--				<include name="org.dita-community.media-d.html/**/*"/>-->
+<!--				<include name="org.dita-community.preprocess-extensions/**/*"/>-->
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>
+			  <include name="org.dita-community.split-page-sequences/**/*"/>
 				<include name="org.dita-community.variables-d/**/*"/>
 			</fileset>
 		</delete>
 		<mkdir dir="${plugin-deploy_target}"/>
 		<copy todir="${plugin-deploy_target}">
 			<fileset dir="${plugin.dist}">
-				<include name="org.dita-community.adjust-copy-to/**/*"/>
+<!--				<include name="org.dita-community.adjust-copy-to/**/*"/>-->
 				<include name="org.dita-community.common.xslt/**/*"/>
 				<include name="org.dita-community.doctypes/**/*"/>
-			  <include name="org.dita-community.flagging.status/**/*"/>
-			  <include name="org.dita-community.media-d.doctypes/**/*"/>
-				<include name="org.dita-community.media-d.html/**/*"/>
-			  <include name="org.dita-community.pdf.flagging/**/*"/>
-			  <include name="org.dita-community.preprocess-extensions/**/*"/>
+<!--				<include name="org.dita-community.media-d.doctypes/**/*"/>-->
+<!--				<include name="org.dita-community.media-d.html/**/*"/>-->
+<!--				<include name="org.dita-community.preprocess-extensions/**/*"/>-->
 				<include name="org.dita-community.ruby-d.doctypes/**/*"/>
 				<include name="org.dita-community.ruby-d.fo/**/*"/>
 				<include name="org.dita-community.ruby-d.html/**/*"/>
-				<include name="org.dita-community.variables-d/**/*"/>
+			  <include name="org.dita-community.split-page-sequences/**/*"/>
+			  <include name="org.dita-community.variables-d/**/*"/>
 			</fileset>
 		</copy>
-    <!-- Integrate the deployed plugins: -->
-    <antcall target="integrate"/>
+    
+	  <exec dir="${dita-ot-dir}/bin" executable="/bin/bash">
+	    <arg value="dita"/>
+	    <arg value="--install"/>
+	    <arg value="--force"/>
+	    <!--<arg value="-v"/>-->
+	  </exec>
+	  
 
 	</target>
 	
-	<target name="dist-init" depends="init">
-		<delete failonerror="false" includeemptydirs="true">
-			<fileset dir="${dist}" includes="*/**"/>
-  	</delete>
+	<target name="dist-init" depends="clean">
 		<mkdir dir="${dist}"/>
 		<mkdir dir="${package.dist}"/>
   </target>
+	
+	
+	<target name="package.single.plugin" depends="clean, dist-init"
+		description="Package the specified plugin"
+		>
+		<property name="plugin.name" value="not-set"/>
 
+		<property name="plugin.dir" value="${basedir}/${plugin.name}"/>
+		<fail message="Plugin directory must contain a version.properties file.">
+			<condition>
+				<not>
+					<available file="${plugin.dir}/version.properties" />
+				</not>
+			</condition>
+		</fail>
+		
+		<property file="${plugin.dir}/version.properties"/>
+		
+		<property name="plugin.dist.dir" value="${plugin.dist}/${plugin.name}"/>
+		
+		<copy todir="${plugin.dist.dir}">
+			<fileset dir="${plugin.dir}">
+				<include name="**/*"/>
+				<exclude name="version.properties"/>
+			</fileset>
+		</copy>
+		
+		<replace encoding="utf-8"
+			token="^version^" 
+			value="${version}"
+		>
+			<fileset dir="${plugin.dist.dir}">
+				<include name="plugin.xml"/>
+				<include name="README.md"/>
+			</fileset>
+		</replace>
+		
+		<property name="zip.file" value="${package.dist}/${plugin.name}.${version}.zip"/>
+		
+		<zip basedir="${plugin.dist}" destfile="${zip.file}">
+			<fileset dir="${plugin.dist}">
+				<include name="${plugin.name}/**/*"/>
+			</fileset>
+		</zip>
+		
+		<antcall target="publish.plugin.to.registry">
+			<param name="plugin.name" value="${plugin.name}"/>
+			<param name="zip.file" value="${zip.file}"/>
+			<param name="version" value="${version}"/>
+		</antcall>
+		
+	</target>
+	
+	<target name="release.single.plugin">
+		<property name="plugin.name" value="not-set"/>
+
+		<property name="plugin.dir" value="${basedir}/${plugin.name}"/>
+		<property file="${plugin.dir}/version.properties"/>
+		<property name="plugin.dist.dir" value="${plugin.dist}/${plugin.name}"/>
+		
+		<antcall target="package.single.plugin">
+			<param name="plugin.name" value="${plugin.name}"/>
+		</antcall>
+				
+		<!-- Push release to GitHub -->
+		
+		<antcall target="post-plugin-release-to-github">
+			<param name="plugin.name" value="${plugin.name}"/>
+		</antcall>
+		
+	</target>
+	
+	<target name="publish.plugin.to.registry">
+		
+		<property name="plugin.name" value="not-set"/>
+		<property name="version" value="not-set"/>
+		
+		<property name="plugin.dir" value="${basedir}/${plugin.name}"/>
+		<property file="${plugin.dir}/version.properties"/>
+		<property name="plugin.dist.dir" value="${plugin.dist}/${plugin.name}"/>
+		
+		<!-- Check the checksum for the zip file -->
+		
+		<exec osfamily="unix" dir="${plugin.dist}" executable="shasum"
+			outputproperty="shasum.result"
+			>
+			<arg line="-a 256"/>
+			<arg line="${zip.file}"/>
+		</exec>
+		
+		<loadresource property="checksum">
+			<concat>${shasum.result}</concat>
+			<filterchain>
+				<replaceregex pattern="\s+.*" replace=""/>
+			</filterchain> 
+		</loadresource>
+		
+		<property name="checksum" value="not-set"/>
+		
+		<property name="plugin.json" value="${plugin.name}.json"/> 
+		
+		<!-- Create a feature branch for the plugn in the registry project fork: -->
+		
+		<property name="branch.name" value="feature/${plugin.name}-${version}"/>
+		
+		<exec executable="git" dir="${registry.target}">
+			<arg line="checkout -b ${branch.name}"/>
+		</exec>
+		
+		<!-- Copy registry descriptor and set the version and checksum: -->
+	
+		<echo>Copying ${registry.src}/${plugin.json} to ${registry.target}</echo>
+		<copy todir="${registry.target}" overwrite="true">
+			<fileset dir="${registry.src}">
+				<include name="${plugin.json}"/>
+			</fileset>
+		</copy>
+		
+		<replace encoding="utf-8"
+			token="^version^" 
+			value="${version}"
+			>
+			<fileset dir="${registry.target}">
+				<include name="${plugin.json}"/>
+			</fileset>
+		</replace>
+		<replace encoding="utf-8"
+			token="^checksum^" 
+			value="${checksum}"
+			>
+			<fileset dir="${registry.target}">
+				<include name="${plugin.json}"/>
+			</fileset>
+		</replace>		
+		
+		<!-- Commit the update and push the branch to origin -->
+		
+		<exec executable="git" dir="${registry.target}">
+			<arg line="add ${plugin.json}"/>
+		</exec>
+		<exec executable="git" dir="${registry.target}">
+			<arg line='commit -s -m "Release ${version}"'/>
+		</exec>
+		<exec executable="git" dir="${registry.target}">
+			<arg line="push -u origin ${branch.name}"/>
+		</exec>
+		
+	</target>
+
+	<target name="post-plugin-release-to-github">
+		
+		<property name="plugin.name" value="not-set"/>
+
+		<property name="plugin.dir" value="${basedir}/${plugin.name}"/>
+		<property file="${plugin.dir}/version.properties"/>
+		<property name="plugin.dist.dir" value="${plugin.dist}/${plugin.name}"/>
+		
+		<property name="github.rest.root" value="https://api.github.com"/>
+		
+		<!-- Step 1: Create a release -->
+		
+		<!--
+			https://developer.github.com/v3/repos/releases/#create-a-release
+			POST /repos/:owner/:repo/releases 
+		-->
+		<property name="release.name" value="v${version}"/>
+		<property name="release.json" value="${plugin.dist.dir}/release.json"/>
+		<echo file="${release.json}">
+{
+  "tag_name": "${release.name}",
+  "target_commitish": "master",
+  "name": "${release.name}",
+  "body": "Release ${version}",
+  "draft": false,
+  "prerelease": false
+}
+		</echo>
+		<property name="targetURL" value="${github.rest.root}/repos/dita-community/${plugin.name}/releases"/>
+		<echo>Creating release </echo>
+		<exec executable="curl" failonerror="true">
+			<arg value="-s"/>
+			<!--<arg value="-v"/>-->
+			<arg value="-u"/>
+			<arg value="${githubuser}:${githubpw}"/>
+			<arg value="${targetURL}"/>
+			<arg value="-H"/>
+			<arg value="Accept: application/vnd.github.v3+json"/>
+			<arg value="-H"/>
+			<arg value="Content-Type: application/json"/>
+			<arg value="-X"/>
+			<arg value="POST"/>
+			<arg value="-F"/>
+			<arg value="files=@${release.json}"/>
+		</exec>
+		
+		<!-- Step 2: Upload the release package Zip file -->
+		
+		<!-- FIXME: Not getting the GitHub REST API to work. -->
+		
+<!--		<property name="targetURL" value="https://api.github.com"/>
+		<echo>File to post: "${filetopost}"</echo>
+		<echo>Uploading to "${targetURL}"...</echo>
+		<exec executable="curl" failonerror="true">
+			<arg value="-s"/>
+			<!-\-<arg value="-v"/>-\->
+			<arg value="-u"/>
+			<arg value="${bitbucketuser}:${bitbucketpw}"/>
+			<arg value="${targetURL}"/>
+			<arg value="-H"/>
+			<arg value="Accept: application/vnd.github.v3+json"/>
+			<arg value="-X"/>
+			<arg value="POST"/>
+			<arg value="-F"/>
+			<arg value="files=@${filetopost}"/>
+		</exec>
+-->	</target>
+	
+	<target name="package.common.xslt"
+		description="Package the org.dita-community.common.xslt plugin for release"
+		>
+		<antcall target="package.single.plugin">
+			<param name="plugin.name" value="org.dita-community.common.xslt"/>
+		</antcall>
+	</target>
+	
+	<target name="package.glossary.preprocess"
+		description="Package the org.dita-community.glossary.preprocess plugin for release"
+		>
+		<antcall target="package.single.plugin">
+			<param name="plugin.name" value="org.dita-community.glossary.preprocess"/>
+		</antcall>
+	</target>
+	
+  <target name="package.split.page-sequences"
+    description="Package the org.dita-community.split-page-sequences plugin for release"
+    >
+    <antcall target="package.single.plugin">
+      <param name="plugin.name" value="org.dita-community.split-page-sequences"/>
+    </antcall>
+  </target>
+  
+  <target name="release.common.xslt"
+		description="Release the org.dita-community.common.xslt plugin to GitHub and plugin repository"
+		>
+		<antcall target="release.single.plugin">
+			<param name="plugin.name" value="org.dita-community.common.xslt"/>
+		</antcall>
+	</target>
+	
+	
 </project>

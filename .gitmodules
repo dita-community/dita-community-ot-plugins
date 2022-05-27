@@ -1,6 +1,3 @@
-[submodule "org.dita-community.adjust-copy-to"]
-	path = org.dita-community.adjust-copy-to
-	url = https://github.com/dita-community/org.dita-community.adjust-copy-to.git
 [submodule "org.dita-community.common.xslt"]
 	path = org.dita-community.common.xslt
 	url = https://github.com/dita-community/org.dita-community.common.xslt.git
@@ -16,9 +13,6 @@
 [submodule "org.dita-community.pdf-page-break"]
 	path = org.dita-community.pdf-page-break
 	url = https://github.com/dita-community/org.dita-community.pdf-page-break.git
-[submodule "org.dita-community.preprocess-extensions"]
-	path = org.dita-community.preprocess-extensions
-	url = https://github.com/dita-community/org.dita-community.preprocess-extensions.git
 [submodule "org.dita-community.ruby-d.doctypes"]
 	path = org.dita-community.ruby-d.doctypes
 	url = https://github.com/dita-community/org.dita-community.ruby-d.doctypes.git
@@ -40,6 +34,9 @@
 [submodule "org.dita-community.common.mapdriven"]
 	path = org.dita-community.common.mapdriven
 	url = git@github.com:dita-community/org.dita-community.common.mapdriven.git
-[submodule "org.dita-community.flagging.status"]
-	path = org.dita-community.flagging.status
-	url = git@github.com:dita-community/org.dita-community.flagging.status.git
+[submodule "org.dita-community.glossary.preprocess"]
+	path = org.dita-community.glossary.preprocess
+	url = git@github.com:dita-community/org.dita-community.glossary.preprocess.git
+[submodule "org.dita-community.split-page-sequences"]
+	path = org.dita-community.split-page-sequences
+	url = git@github.com:dita-community/org.dita-community.split-page-sequences.git
