@@ -40,3 +40,6 @@
 [submodule "org.dita-community.split-page-sequences"]
 	path = org.dita-community.split-page-sequences
 	url = git@github.com:dita-community/org.dita-community.split-page-sequences.git
+[submodule "org.dita-community.crossdeliverable.base"]
+	path = org.dita-community.crossdeliverable.base
+	url = git@github.com:dita-community/org.dita-community.crossdeliverable.base.git
