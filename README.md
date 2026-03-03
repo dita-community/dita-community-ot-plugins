@@ -56,7 +56,7 @@ dita-ot-dir=/Users/ekimber/DITA-OT
 
 If you would like to contribute a plugin to the DITA Community organization, contact one of the DITA Community organization owners and we'll set up a repository for you and add the plugin to this project as a submodule.
 
-Contact: ekimber@dita-community.org
+Contact: eliot.kimber@servicenow.com
 
 
 If you are interested in being a member of the DITA Community GitHub project team, please contact one of the team members or create an issue indicating that you'd like to contribute. We can always use help maintaining the repository.
